@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
 
 from configs import ROOT_DIR, BASE_DIR
-from scraping.helpers import get_driver, add_to_existing_json, make_dir_if_not_exists
+from scraping.helpers import scraper_driver, add_to_existing_json, make_dir_if_not_exists
 
 
 class DcraScraper():
@@ -76,7 +76,7 @@ class DcraScraper():
         driver.execute_script("arguments[0].scrollIntoView(true);", el)
         time.sleep(3)
 
-    def scrape(self, categories, category):
+    def scrape_site(self, categories, category):
         data_dir = f'DATASET'
         make_dir_if_not_exists(data_dir)
         data_file =  f'{BASE_DIR}/{data_dir}/samakal_{category}.json'
@@ -138,9 +138,9 @@ def main_samakal(categories, category):
     # chromedriver_autoinstaller.install(True)
     time.sleep(10)
     chrome_version = chromedriver_autoinstaller.get_chrome_version()
-    driver_dcra = get_driver('https://samakal.com/', chrome_version = chrome_version, headless=True)
+    driver_dcra = scraper_driver('https://samakal.com/', chrome_version = chrome_version, headless=True)
     scraper = DcraScraper(driver_dcra)
-    scraper.scrape(categories, category)
+    scraper.scrape_site(categories, category)
     driver_dcra.quit()
 
 # if __name__ == "__main__":

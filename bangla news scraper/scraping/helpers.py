@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.options import Options
 from configs import CHROMEDRIVER_PATH, BASE_DIR
 
 
-def get_driver(url, headless=True, chrome_version=False):
+def scraper_driver(url, headless=True, chrome_version=False):
     option = Options()
     option.add_argument("--disable-notifications")
     option.add_argument('--no-sandbox')

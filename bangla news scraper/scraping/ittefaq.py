@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 import chromedriver_autoinstaller
 
 from configs import ROOT_DIR, BASE_DIR
-from scraping.helpers import get_driver, add_to_existing_json
+from scraping.helpers import scraper_driver, add_to_existing_json
 
 
 class DcraScraper():
@@ -107,7 +107,7 @@ def main_ittefaq(categories, category):
     time.sleep(10)
     chrome_version = chromedriver_autoinstaller.get_chrome_version()
     main_site = 'https://www.ittefaq.com.bd/'
-    driver_dcra = get_driver(main_site, chrome_version = chrome_version, headless=True)
+    driver_dcra = scraper_driver(main_site, chrome_version = chrome_version, headless=True)
     scraper = DcraScraper(driver_dcra)
     scraper.scrape(categories, category, main_site)
     driver_dcra.quit()
